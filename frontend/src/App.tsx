@@ -56,6 +56,13 @@ import type {
 import { formatResultData } from "@/features/phase-one/utils";
 
 function App() {
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
+    const stored = window.localStorage.getItem("nexatools-theme");
+    return stored === "light" ? "light" : "dark";
+  });
   const [activeGroup, setActiveGroup] = useState<ActiveGroup>("text");
   const [loadingLabel, setLoadingLabel] = useState("");
   const [lastRun, setLastRun] = useState<RunState>({
@@ -129,6 +136,12 @@ function App() {
     },
     archiveInfoPath: "",
   });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("nexatools-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     let mounted = true;
@@ -221,9 +234,11 @@ function App() {
   const currentLabel = navItems.find((item) => item.id === activeGroup)?.label ?? "";
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(30,215,96,0.14),_transparent_18%),linear-gradient(180deg,_#101010_0%,_#121212_100%)] text-white">
+    <div className="app-shell min-h-screen">
       <div className="mx-auto flex min-h-screen max-w-[1500px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
         <TopBar
+          theme={theme}
+          onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
           toolSearch={toolSearch}
           setToolSearch={setToolSearch}
           filteredTools={filteredTools}

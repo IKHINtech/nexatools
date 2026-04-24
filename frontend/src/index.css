@@ -51,37 +51,57 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.19 0 0);
-  --foreground: oklch(0.96 0 0);
-  --card: oklch(0.23 0 0);
-  --card-foreground: oklch(0.96 0 0);
-  --popover: oklch(0.23 0 0);
-  --popover-foreground: oklch(0.96 0 0);
+  --background: oklch(0.97 0.01 95);
+  --foreground: oklch(0.23 0.01 95);
+  --card: oklch(0.995 0.003 95);
+  --card-foreground: oklch(0.23 0.01 95);
+  --popover: oklch(0.995 0.003 95);
+  --popover-foreground: oklch(0.23 0.01 95);
   --primary: oklch(0.81 0.22 149);
   --primary-foreground: oklch(0.16 0.02 149);
-  --secondary: oklch(0.29 0 0);
-  --secondary-foreground: oklch(0.96 0 0);
-  --muted: oklch(0.27 0 0);
-  --muted-foreground: oklch(0.74 0 0);
-  --accent: oklch(0.31 0 0);
-  --accent-foreground: oklch(0.96 0 0);
+  --secondary: oklch(0.93 0.01 95);
+  --secondary-foreground: oklch(0.23 0.01 95);
+  --muted: oklch(0.95 0.01 95);
+  --muted-foreground: oklch(0.5 0.01 95);
+  --accent: oklch(0.93 0.01 95);
+  --accent-foreground: oklch(0.23 0.01 95);
   --destructive: oklch(0.64 0.22 25);
-  --border: oklch(0.32 0 0);
-  --input: oklch(0.32 0 0);
+  --border: oklch(0.89 0.01 95);
+  --input: oklch(0.9 0.01 95);
   --ring: oklch(0.81 0.22 149);
   --chart-1: oklch(0.62 0.164 38.8);
   --chart-2: oklch(0.58 0.115 176.7);
   --chart-3: oklch(0.41 0.071 232.8);
   --chart-4: oklch(0.74 0.155 84.5);
   --chart-5: oklch(0.66 0.184 45.1);
-  --sidebar: oklch(0.16 0 0);
-  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar: oklch(0.96 0.01 95);
+  --sidebar-foreground: oklch(0.23 0.01 95);
   --sidebar-primary: oklch(0.81 0.22 149);
   --sidebar-primary-foreground: oklch(0.16 0.02 149);
-  --sidebar-accent: oklch(0.29 0 0);
-  --sidebar-accent-foreground: oklch(0.96 0 0);
-  --sidebar-border: oklch(0.32 0 0);
+  --sidebar-accent: oklch(0.93 0.01 95);
+  --sidebar-accent-foreground: oklch(0.23 0.01 95);
+  --sidebar-border: oklch(0.89 0.01 95);
   --sidebar-ring: oklch(0.81 0.22 149);
+  --shell-text: #161616;
+  --shell-subtext: #5f6368;
+  --shell-muted-copy: #484c52;
+  --shell-border: rgba(15, 23, 42, 0.08);
+  --shell-border-strong: rgba(15, 23, 42, 0.14);
+  --shell-panel: rgba(255, 255, 255, 0.78);
+  --shell-panel-soft: rgba(255, 255, 255, 0.92);
+  --shell-elevated: rgba(246, 247, 249, 0.98);
+  --shell-input: rgba(244, 246, 248, 0.98);
+  --shell-code: rgba(241, 243, 245, 0.95);
+  --shell-hero: linear-gradient(135deg, rgba(30, 215, 96, 0.28), rgba(255, 255, 255, 0.94) 34%, rgba(245, 247, 248, 0.96) 100%);
+  --shell-hero-stat: rgba(255, 255, 255, 0.58);
+  --shell-topbar: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 247, 249, 0.88));
+  --shell-bg: radial-gradient(circle at top, rgba(30, 215, 96, 0.18), transparent 18%), linear-gradient(180deg, #f7f8f9 0%, #edf1f3 100%);
+  --shell-color-scheme: light;
+  --shell-nav-active: linear-gradient(135deg, rgba(30, 215, 96, 0.2), rgba(255, 255, 255, 0.96) 48%, rgba(240, 248, 243, 0.98) 100%);
+  --shell-nav-active-border: rgba(30, 215, 96, 0.28);
+  --shell-nav-active-text: #0f1720;
+  --shell-nav-active-chip: rgba(30, 215, 96, 0.16);
+  --shell-nav-active-chip-text: #126b34;
 }
 
 .dark {
@@ -116,6 +136,26 @@
   --sidebar-accent-foreground: oklch(0.96 0 0);
   --sidebar-border: oklch(1 0 0 / 12%);
   --sidebar-ring: oklch(0.81 0.22 149);
+  --shell-text: #ffffff;
+  --shell-subtext: #b3b3b3;
+  --shell-muted-copy: #d1d1d1;
+  --shell-border: rgba(255, 255, 255, 0.08);
+  --shell-border-strong: rgba(255, 255, 255, 0.16);
+  --shell-panel: #181818;
+  --shell-panel-soft: #121212;
+  --shell-elevated: #242424;
+  --shell-input: #242424;
+  --shell-code: rgba(0, 0, 0, 0.3);
+  --shell-hero: linear-gradient(135deg, rgba(30, 215, 96, 0.22), rgba(30, 30, 30, 0.94) 34%, rgba(18, 18, 18, 0.96) 100%);
+  --shell-hero-stat: rgba(0, 0, 0, 0.2);
+  --shell-topbar: linear-gradient(180deg, rgba(30, 30, 30, 0.96), rgba(18, 18, 18, 0.92));
+  --shell-bg: radial-gradient(circle at top, rgba(30, 215, 96, 0.14), transparent 18%), linear-gradient(180deg, #101010 0%, #121212 100%);
+  --shell-color-scheme: dark;
+  --shell-nav-active: linear-gradient(135deg, rgba(30, 215, 96, 0.18), rgba(30, 30, 30, 0.95) 58%, rgba(18, 18, 18, 0.98) 100%);
+  --shell-nav-active-border: rgba(30, 215, 96, 0.22);
+  --shell-nav-active-text: #ffffff;
+  --shell-nav-active-chip: #1ed760;
+  --shell-nav-active-chip-text: #04130a;
 }
 
 @layer base {
@@ -139,5 +179,102 @@
   ::selection {
     background: color-mix(in oklab, var(--primary) 65%, white);
     color: white;
+  }
+}
+
+@layer components {
+  .app-shell {
+    background: var(--shell-bg);
+    color: var(--shell-text);
+  }
+
+  .app-topbar {
+    border-color: var(--shell-border);
+    background: var(--shell-topbar);
+    box-shadow: 0 24px 60px -36px rgba(0, 0, 0, 0.28);
+    color: var(--shell-text);
+  }
+
+  .app-panel {
+    border-color: var(--shell-border);
+    background: var(--shell-panel);
+    color: var(--shell-text);
+  }
+
+  .app-card-soft {
+    border-color: var(--shell-border);
+    background: var(--shell-panel-soft);
+    color: var(--shell-text);
+  }
+
+  .app-elevated {
+    border-color: var(--shell-border);
+    background: var(--shell-elevated);
+    color: var(--shell-text);
+  }
+
+  .app-hero {
+    border-color: var(--shell-border);
+    background: var(--shell-hero);
+    color: var(--shell-text);
+  }
+
+  .app-hero-stat {
+    border-color: var(--shell-border);
+    background: var(--shell-hero-stat);
+    color: var(--shell-text);
+  }
+
+  .app-subtle {
+    color: var(--shell-subtext);
+  }
+
+  .app-code {
+    background: var(--shell-code);
+    color: var(--shell-text);
+  }
+
+  .app-badge-muted {
+    border-color: var(--shell-border);
+    background: var(--shell-elevated);
+    color: var(--shell-subtext);
+  }
+
+  .app-button-outline {
+    border-color: var(--shell-border);
+    background: var(--shell-elevated);
+    color: var(--shell-text);
+  }
+
+  .app-button-outline:hover {
+    background: color-mix(in srgb, var(--shell-elevated) 84%, black 8%);
+  }
+
+  .app-theme-toggle {
+    border-color: var(--shell-border);
+    background: var(--shell-elevated);
+    color: var(--shell-text);
+  }
+
+  .app-theme-toggle:hover {
+    background: color-mix(in srgb, var(--shell-elevated) 86%, var(--primary) 10%);
+  }
+
+  .app-nav-active {
+    border-color: var(--shell-nav-active-border);
+    background: var(--shell-nav-active);
+    color: var(--shell-nav-active-text);
+  }
+
+  .app-nav-icon-active {
+    border-color: var(--shell-nav-active-border);
+    background: var(--shell-nav-active-chip);
+    color: var(--shell-nav-active-chip-text);
+  }
+
+  .app-nav-badge-active {
+    border-color: var(--shell-nav-active-border);
+    background: var(--shell-nav-active-chip);
+    color: var(--shell-nav-active-chip-text);
   }
 }

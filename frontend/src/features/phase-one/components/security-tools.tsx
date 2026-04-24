@@ -81,4 +81,4 @@ export function SecurityToolsSection({ state, setState, loading, runTool, bindin
 }
 
 const selectClass =
-  "h-11 w-full appearance-none rounded-2xl border border-white/10 bg-[#242424] px-4 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition [color-scheme:dark] focus:border-[#1ed760]/70 focus:ring-4 focus:ring-[#1ed760]/20";
+  "h-11 w-full appearance-none rounded-2xl border border-[var(--shell-border)] bg-[var(--shell-input)] px-4 text-sm text-[var(--shell-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition [color-scheme:var(--shell-color-scheme)] focus:border-[#1ed760]/70 focus:ring-4 focus:ring-[#1ed760]/20";

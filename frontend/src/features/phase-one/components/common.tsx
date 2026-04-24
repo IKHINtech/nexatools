@@ -64,10 +64,10 @@ export function ToolCard({
   children: ReactNode;
 }) {
   return (
-    <Card className="border-white/8 bg-[#181818] text-white shadow-[0_20px_60px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
+    <Card className="app-panel shadow-[0_20px_60px_-50px_rgba(0,0,0,0.18)] backdrop-blur">
       <CardHeader>
-        <CardTitle className="text-2xl font-black tracking-[-0.03em] text-white">{title}</CardTitle>
-        <CardDescription className="text-[#b3b3b3]">{description}</CardDescription>
+        <CardTitle className="text-2xl font-black tracking-[-0.03em]">{title}</CardTitle>
+        <CardDescription className="app-subtle">{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">{children}</CardContent>
     </Card>
@@ -83,7 +83,7 @@ export function Field({
 }) {
   return (
     <div className="grid gap-2">
-      <Label className="text-sm font-semibold text-[#f5f5f5]">{label}</Label>
+      <Label className="text-sm font-semibold text-[var(--shell-text)]">{label}</Label>
       {children}
     </div>
   );
@@ -99,18 +99,18 @@ export function Toggle({
   label: string;
 }) {
   return (
-    <label className="flex cursor-pointer items-center justify-between rounded-2xl border border-white/8 bg-[#242424] px-4 py-3 text-sm text-[#f5f5f5] transition hover:border-white/14 hover:bg-[#2a2a2a]">
+    <label className="app-elevated flex cursor-pointer items-center justify-between rounded-2xl border px-4 py-3 text-sm text-[var(--shell-text)] transition hover:border-[var(--shell-border-strong)] hover:bg-[var(--shell-elevated)]">
       <span>{label}</span>
-      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-stone-900" />
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-[#1ed760]" />
     </label>
   );
 }
 
 export function RulePill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-[#242424] px-4 py-3">
-      <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#b3b3b3]">{label}</div>
-      <div className="mt-1 text-sm font-medium text-white">{value}</div>
+    <div className="app-elevated rounded-2xl border px-4 py-3">
+      <div className="app-subtle text-[11px] font-bold uppercase tracking-[0.18em]">{label}</div>
+      <div className="mt-1 text-sm font-medium text-[var(--shell-text)]">{value}</div>
     </div>
   );
 }
@@ -118,8 +118,8 @@ export function RulePill({ label, value }: { label: string; value: string }) {
 export function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="text-[11px] uppercase tracking-[0.18em] text-[#b3b3b3]">{label}</div>
-      <div className="mt-1 break-words text-sm text-stone-100">{value}</div>
+      <div className="app-subtle text-[11px] uppercase tracking-[0.18em]">{label}</div>
+      <div className="mt-1 break-words text-sm text-[var(--shell-text)]">{value}</div>
     </div>
   );
 }
@@ -132,10 +132,10 @@ export function SectionHeader({
   description: string;
 }) {
   return (
-    <Card className="border-white/8 bg-[linear-gradient(180deg,rgba(34,34,34,0.96),rgba(24,24,24,0.96))] backdrop-blur">
+    <Card className="app-panel backdrop-blur">
       <CardHeader>
-        <CardTitle className="text-xl font-black tracking-[-0.03em] text-white">{title}</CardTitle>
-        <CardDescription className="text-[#b3b3b3]">{description}</CardDescription>
+        <CardTitle className="text-xl font-black tracking-[-0.03em]">{title}</CardTitle>
+        <CardDescription className="app-subtle">{description}</CardDescription>
       </CardHeader>
     </Card>
   );
@@ -147,7 +147,7 @@ export function CopyPreviewButton({
   onCopy: () => void;
 }) {
   return (
-    <Button variant="secondary" size="sm" onClick={onCopy} className="bg-stone-100 text-stone-900 hover:bg-white">
+    <Button variant="secondary" size="sm" onClick={onCopy} className="bg-[#1ed760] text-[#04130a] hover:bg-[#3be477]">
       Copy
     </Button>
   );
@@ -234,13 +234,13 @@ export function PathPicker({
 
   return (
     <div className="grid gap-2">
-      <Label htmlFor={inputId} className="text-sm font-semibold text-[#f5f5f5]">{label}</Label>
+      <Label htmlFor={inputId} className="text-sm font-semibold text-[var(--shell-text)]">{label}</Label>
       <div
         data-drop-key={dropKey}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => void handleDrop(event)}
         style={dropTargetStyle}
-        className="rounded-3xl border border-dashed border-white/12 bg-[#121212] p-3 transition hover:border-[#1ed760]/40 hover:bg-[#181818]"
+        className="app-card-soft rounded-3xl border border-dashed p-3 transition hover:border-[#1ed760]/40 hover:bg-[var(--shell-panel)]"
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Input
@@ -248,20 +248,20 @@ export function PathPicker({
             value={value}
             onChange={(event) => onChange(event.target.value)}
             placeholder={placeholder}
-            className="border-white/8 bg-[#242424] text-white placeholder:text-[#b3b3b3]"
+            className="border-[var(--shell-border)] bg-[var(--shell-input)]"
           />
           <div className="flex gap-2">
-            <Button type="button" variant="outline" onClick={() => hiddenInputRef.current?.click()} className="border-white/10 bg-[#242424] text-white hover:bg-[#2a2a2a]">
+            <Button type="button" variant="outline" onClick={() => hiddenInputRef.current?.click()} className="app-button-outline">
               {buttonLabel}
             </Button>
             {value ? (
-              <Button type="button" variant="ghost" onClick={() => onChange("")} className="text-[#b3b3b3] hover:bg-[#2a2a2a] hover:text-white">
+              <Button type="button" variant="ghost" onClick={() => onChange("")} className="app-subtle hover:bg-[var(--shell-elevated)] hover:text-[var(--shell-text)]">
                 Clear
               </Button>
             ) : null}
           </div>
         </div>
-        <div className="mt-2 text-xs leading-5 text-[#b3b3b3]">
+        <div className="app-subtle mt-2 text-xs leading-5">
           {helper ?? "Drop file here or choose from disk. In Wails desktop, picker resolves absolute paths for backend use."}
         </div>
       </div>
