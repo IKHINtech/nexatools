@@ -26,7 +26,7 @@ export function SecurityToolsSection({ state, setState, loading, runTool, bindin
       <ToolCard title="Password Generator" description="Password generation now guarantees at least one character from each enabled class.">
         <div className="grid gap-4">
           <Field label="Length">
-            <Input value={passwordConfig.length} onChange={(e) => setState((prev) => ({ ...prev, passwordConfig: { ...prev.passwordConfig, length: e.target.value } }))} className="border-stone-300 bg-white max-w-xs" />
+            <Input value={passwordConfig.length} onChange={(e) => setState((prev) => ({ ...prev, passwordConfig: { ...prev.passwordConfig, length: e.target.value } }))} className="max-w-xs" />
           </Field>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Toggle checked={passwordConfig.lower} onChange={(checked) => setState((prev) => ({ ...prev, passwordConfig: { ...prev.passwordConfig, lower: checked } }))} label="Lowercase" />
@@ -50,7 +50,7 @@ export function SecurityToolsSection({ state, setState, loading, runTool, bindin
               </select>
             </Field>
             <Field label="Text input">
-              <Textarea value={hashTextState.input} onChange={(e) => setState((prev) => ({ ...prev, hashTextState: { ...prev.hashTextState, input: e.target.value } }))} rows={5} className="border-stone-300 bg-white" />
+              <Textarea value={hashTextState.input} onChange={(e) => setState((prev) => ({ ...prev, hashTextState: { ...prev.hashTextState, input: e.target.value } }))} rows={5} />
             </Field>
             <Button variant="outline" onClick={() => void runTool("SecurityHashText", () => bindings.hashText(hashTextState.algorithm, hashTextState.input))} disabled={loading}>Hash Text</Button>
           </div>
@@ -81,4 +81,4 @@ export function SecurityToolsSection({ state, setState, loading, runTool, bindin
 }
 
 const selectClass =
-  "h-11 w-full rounded-2xl border border-stone-300 bg-white px-3 text-sm text-stone-900 shadow-sm outline-none transition focus:border-stone-500 focus:ring-4 focus:ring-stone-200";
+  "h-11 w-full appearance-none rounded-2xl border border-white/10 bg-[#242424] px-4 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition [color-scheme:dark] focus:border-[#1ed760]/70 focus:ring-4 focus:ring-[#1ed760]/20";

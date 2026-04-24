@@ -27,13 +27,13 @@ export function QRToolsSection({ state, setState, loading, runTool, bindings }: 
         <div className="grid gap-6 md:grid-cols-2">
           <div className="grid gap-4">
             <Field label="Content">
-              <Textarea value={qrState.content} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, content: e.target.value } }))} rows={5} className="border-stone-300 bg-white" />
+              <Textarea value={qrState.content} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, content: e.target.value } }))} rows={5} />
             </Field>
             <Field label="Size">
-              <Input value={qrState.size} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, size: e.target.value } }))} className="border-stone-300 bg-white" />
+              <Input value={qrState.size} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, size: e.target.value } }))} />
             </Field>
             <Field label="Output path (optional)">
-              <Input value={qrState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, outputPath: e.target.value } }))} placeholder="/tmp/qr.png or leave empty" className="border-stone-300 bg-white" />
+              <Input value={qrState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, qrState: { ...prev.qrState, outputPath: e.target.value } }))} placeholder="/tmp/qr.png or leave empty" />
             </Field>
             <Button onClick={() => void runTool("QRGeneratePNG", () => bindings.qrGeneratePNG(qrState.content, Number(qrState.size), qrState.outputPath))} disabled={loading}>Generate QR PNG</Button>
           </div>
@@ -61,10 +61,10 @@ export function QRToolsSection({ state, setState, loading, runTool, bindings }: 
             </select>
           </Field>
           <Field label="Content">
-            <Input value={barcodeState.content} onChange={(e) => setState((prev) => ({ ...prev, barcodeState: { ...prev.barcodeState, content: e.target.value } }))} className="border-stone-300 bg-white" />
+            <Input value={barcodeState.content} onChange={(e) => setState((prev) => ({ ...prev, barcodeState: { ...prev.barcodeState, content: e.target.value } }))} />
           </Field>
           <Field label="Output path (optional)">
-            <Input value={barcodeState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, barcodeState: { ...prev.barcodeState, outputPath: e.target.value } }))} placeholder="/tmp/barcode.svg or leave empty" className="border-stone-300 bg-white" />
+            <Input value={barcodeState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, barcodeState: { ...prev.barcodeState, outputPath: e.target.value } }))} placeholder="/tmp/barcode.svg or leave empty" />
           </Field>
         </div>
         <Button onClick={() => void runTool("QRGenerateBarcodeSVG", () => bindings.qrGenerateBarcodeSVG(barcodeState.format, barcodeState.content, barcodeState.outputPath))} disabled={loading}>Generate Barcode SVG</Button>
@@ -74,4 +74,4 @@ export function QRToolsSection({ state, setState, loading, runTool, bindings }: 
 }
 
 const selectClass =
-  "h-11 w-full rounded-2xl border border-stone-300 bg-white px-3 text-sm text-stone-900 shadow-sm outline-none transition focus:border-stone-500 focus:ring-4 focus:ring-stone-200";
+  "h-11 w-full appearance-none rounded-2xl border border-white/10 bg-[#242424] px-4 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition [color-scheme:dark] focus:border-[#1ed760]/70 focus:ring-4 focus:ring-[#1ed760]/20";

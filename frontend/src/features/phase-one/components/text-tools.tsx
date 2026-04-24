@@ -35,10 +35,10 @@ export function TextToolsSection({ state, setState, loading, runTool, bindings }
       <ToolCard title="JSON Formatter / Minifier" description="Format or minify JSON without leaving the desktop shell.">
         <div className="grid gap-4">
           <Field label="Input JSON">
-            <Textarea value={jsonInput} onChange={(e) => setState((prev) => ({ ...prev, jsonInput: e.target.value }))} rows={7} className="border-stone-300 bg-white" />
+            <Textarea value={jsonInput} onChange={(e) => setState((prev) => ({ ...prev, jsonInput: e.target.value }))} rows={7} />
           </Field>
           <Field label="Indent">
-            <Input value={jsonIndent} onChange={(e) => setState((prev) => ({ ...prev, jsonIndent: e.target.value }))} className="border-stone-300 bg-white" />
+            <Input value={jsonIndent} onChange={(e) => setState((prev) => ({ ...prev, jsonIndent: e.target.value }))} />
           </Field>
           <div className="flex flex-wrap gap-3">
             <Button onClick={() => void runTool("TextFormatJSON", () => bindings.formatJSON(jsonInput, jsonIndent))} disabled={loading}>Format JSON</Button>
@@ -50,7 +50,7 @@ export function TextToolsSection({ state, setState, loading, runTool, bindings }
       <ToolCard title="Encoding Bench" description="Base64 and URL helpers share the same text source so the output is easy to compare.">
         <div className="grid gap-4">
           <Field label="Source text">
-            <Textarea value={textInput} onChange={(e) => setState((prev) => ({ ...prev, textInput: e.target.value }))} rows={5} className="border-stone-300 bg-white" />
+            <Textarea value={textInput} onChange={(e) => setState((prev) => ({ ...prev, textInput: e.target.value }))} rows={5} />
           </Field>
           <div className="flex flex-wrap gap-3">
             <Button onClick={() => void runTool("TextBase64Encode", () => bindings.base64Encode(textInput))} disabled={loading}>Base64 Encode</Button>
@@ -64,7 +64,7 @@ export function TextToolsSection({ state, setState, loading, runTool, bindings }
       <ToolCard title="Word Stats / Case / Slug" description="One text area drives the text analysis and normalization tools.">
         <div className="grid gap-4">
           <Field label="Text input">
-            <Textarea value={textInput} onChange={(e) => setState((prev) => ({ ...prev, textInput: e.target.value }))} rows={5} className="border-stone-300 bg-white" />
+            <Textarea value={textInput} onChange={(e) => setState((prev) => ({ ...prev, textInput: e.target.value }))} rows={5} />
           </Field>
           <Field label="Case mode">
             <select value={caseMode} onChange={(e) => setState((prev) => ({ ...prev, caseMode: e.target.value }))} className={selectClass}>
@@ -89,20 +89,20 @@ export function TextToolsSection({ state, setState, loading, runTool, bindings }
         <div className="grid gap-5">
           <div className="grid gap-4 md:grid-cols-3">
             <Field label="Paragraphs">
-              <Input value={loremConfig.paragraphs} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, paragraphs: Number(e.target.value) || 0 } }))} className="border-stone-300 bg-white" />
+              <Input value={loremConfig.paragraphs} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, paragraphs: Number(e.target.value) || 0 } }))} />
             </Field>
             <Field label="Sentences / paragraph">
-              <Input value={loremConfig.sentences} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, sentences: Number(e.target.value) || 0 } }))} className="border-stone-300 bg-white" />
+              <Input value={loremConfig.sentences} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, sentences: Number(e.target.value) || 0 } }))} />
             </Field>
             <Field label="Words / sentence">
-              <Input value={loremConfig.words} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, words: Number(e.target.value) || 0 } }))} className="border-stone-300 bg-white" />
+              <Input value={loremConfig.words} onChange={(e) => setState((prev) => ({ ...prev, loremConfig: { ...prev.loremConfig, words: Number(e.target.value) || 0 } }))} />
             </Field>
           </div>
           <Button onClick={() => void runTool("TextLorem", () => bindings.lorem(loremConfig.paragraphs, loremConfig.sentences, loremConfig.words))} disabled={loading}>
             Generate Lorem
           </Button>
           <Field label="CSV or JSON input">
-            <Textarea value={csvJsonInput} onChange={(e) => setState((prev) => ({ ...prev, csvJsonInput: e.target.value }))} rows={7} className="border-stone-300 bg-white" />
+            <Textarea value={csvJsonInput} onChange={(e) => setState((prev) => ({ ...prev, csvJsonInput: e.target.value }))} rows={7} />
           </Field>
           <div className="flex flex-wrap gap-3">
             <Button variant="outline" onClick={() => void runTool("TextCSVToJSON", () => bindings.csvToJSON(csvJsonInput))} disabled={loading}>CSV to JSON</Button>
@@ -115,4 +115,4 @@ export function TextToolsSection({ state, setState, loading, runTool, bindings }
 }
 
 const selectClass =
-  "h-11 w-full rounded-2xl border border-stone-300 bg-white px-3 text-sm text-stone-900 shadow-sm outline-none transition focus:border-stone-500 focus:ring-4 focus:ring-stone-200";
+  "h-11 w-full appearance-none rounded-2xl border border-white/10 bg-[#242424] px-4 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition [color-scheme:dark] focus:border-[#1ed760]/70 focus:ring-4 focus:ring-[#1ed760]/20";

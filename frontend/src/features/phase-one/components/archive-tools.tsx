@@ -27,7 +27,7 @@ export function ArchiveToolsSection({ state, setState, loading, runTool, binding
       <ToolCard title="Create ZIP" description="Put one input path per line. Directories preserve internal structure inside the archive.">
         <div className="grid gap-4">
           <Field label="Input paths">
-            <Textarea value={archiveCreateState.inputPaths} onChange={(e) => setState((prev) => ({ ...prev, archiveCreateState: { ...prev.archiveCreateState, inputPaths: e.target.value } }))} rows={6} placeholder={"/tmp/file-a.txt\n/tmp/folder-b"} className="border-stone-300 bg-white" />
+            <Textarea value={archiveCreateState.inputPaths} onChange={(e) => setState((prev) => ({ ...prev, archiveCreateState: { ...prev.archiveCreateState, inputPaths: e.target.value } }))} rows={6} placeholder={"/tmp/file-a.txt\n/tmp/folder-b"} />
           </Field>
           <PathPicker
             label="Add files from disk"
@@ -48,7 +48,7 @@ export function ArchiveToolsSection({ state, setState, loading, runTool, binding
             helper="Drop one or more files here to append absolute paths. Folder drops also work in Wails drag-drop."
           />
           <Field label="Output path (optional)">
-            <Input value={archiveCreateState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, archiveCreateState: { ...prev.archiveCreateState, outputPath: e.target.value } }))} placeholder="/tmp/output.zip or leave empty" className="border-stone-300 bg-white" />
+            <Input value={archiveCreateState.outputPath} onChange={(e) => setState((prev) => ({ ...prev, archiveCreateState: { ...prev.archiveCreateState, outputPath: e.target.value } }))} placeholder="/tmp/output.zip or leave empty" />
           </Field>
           <Button onClick={() => void runTool("ArchiveCreateZIP", () => bindings.archiveCreateZIP(archiveCreateState.outputPath, splitLines(archiveCreateState.inputPaths)))} disabled={loading}>Create ZIP</Button>
         </div>
@@ -67,7 +67,7 @@ export function ArchiveToolsSection({ state, setState, loading, runTool, binding
               helper="Drop a ZIP file here or pick one from disk."
             />
             <Field label="Destination dir (optional)">
-              <Input value={archiveExtractState.outputDir} onChange={(e) => setState((prev) => ({ ...prev, archiveExtractState: { ...prev.archiveExtractState, outputDir: e.target.value } }))} placeholder="/tmp/unpacked or leave empty" className="border-stone-300 bg-white" />
+              <Input value={archiveExtractState.outputDir} onChange={(e) => setState((prev) => ({ ...prev, archiveExtractState: { ...prev.archiveExtractState, outputDir: e.target.value } }))} placeholder="/tmp/unpacked or leave empty" />
             </Field>
             <Button variant="outline" onClick={() => void runTool("ArchiveExtractZIP", () => bindings.archiveExtractZIP(archiveExtractState.zipPath, archiveExtractState.outputDir))} disabled={loading}>Extract ZIP</Button>
           </div>
