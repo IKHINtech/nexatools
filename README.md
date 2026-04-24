@@ -1,104 +1,190 @@
-# Wails + Vite + React + Tailwind CSS v4 + shadcn/ui + TypeScript
+# NexaTools
 
-A modern Wails template featuring the latest technologies for building beautiful desktop applications.
+Desktop toolkit berbasis Go + Wails untuk berbagai utilitas harian seperti text/data tools, kalkulator, security helpers, QR/barcode, dan archive tools.
 
-## 🚀 Features
+Project ini sedang dimigrasikan ke stack Go murni untuk backend logic, dengan frontend React + TypeScript yang berjalan di atas Wails. Roadmap eksekusi ada di [roadmap.md](/media/irprogrammer/DATA/Project/wails/usefullTools/roadmap.md:1).
 
-- **[Wails v2.11.0](https://wails.io/)** - Build desktop apps using Go & Web Technologies
-- **[React 18.3](https://react.dev/)** - Modern React with hooks
-- **[TypeScript 5.7](https://www.typescriptlang.org/)** - Type safety and better DX
-- **[Vite 5.4](https://vitejs.dev/)** - Lightning-fast HMR and build tool
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Latest Tailwind with new Vite plugin
-- **[shadcn/ui](https://ui.shadcn.com/)** - Beautiful, accessible component library
-- **[ESLint 9](https://eslint.org/)** - Code quality with flat config
-- **Cross-platform build scripts** - Easy builds for Windows, macOS, and Linux
+## Status
 
-## 📦 Installation
+Yang sudah tersedia saat ini:
+- Foundation backend (`internal/app`, `internal/bindings`, `internal/contracts`, `internal/infra`)
+- Unified response envelope: `success`, `data`, `error`, `trace_id`
+- Tool registry + `ListTools()`
+- Temp manager, size limit, timeout, dan managed temp workspace untuk flow file-based
+- Frontend desktop untuk fitur yang sudah selesai di backend
 
-```bash
-wails init -n myapp -t https://github.com/Mahcks/wails-vite-react-tailwind-shadcnui-ts
-cd myapp
-```
+Phase yang sudah selesai:
+- Phase 0
+- Phase 1
 
-## 🛠️ Development
+Fitur yang sudah jalan sekarang:
+- Text & Data
+  - JSON formatter / minifier
+  - CSV / JSON
+  - Base64
+  - URL encode / decode
+  - Word counter
+  - Case converter
+  - Slug generator
+  - Lorem ipsum
+- Calculators
+  - Basic calculator
+  - Unit converter
+  - Percentage calculator
+  - Date calculator
+  - Timestamp converter
+  - Number base converter
+- Security
+  - Password generator
+  - Hash text
+  - File hash
+- QR & Barcodes
+  - Generate QR
+  - Read QR
+  - Generate barcode SVG (`code39`, `ean13`)
+- Archive Tools
+  - Create ZIP
+  - Extract ZIP
+  - ZIP info
 
-Run the app in development mode with hot reload:
+## Tech Stack
+
+- Go `1.23`
+- Wails `v2.12.0`
+- React `18`
+- TypeScript `5`
+- Vite `5`
+- Tailwind CSS `4`
+- shadcn/ui primitives
+
+Library backend yang dipakai saat ini:
+- `github.com/google/uuid`
+- `github.com/tuotoo/qrcode`
+- `rsc.io/qr`
+
+## Development
+
+Jalankan mode development desktop:
 
 ```bash
 wails dev
 ```
 
-The frontend dev server runs on http://localhost:5173 with Vite's fast HMR.
+Kalau hanya ingin build frontend:
 
-## 🏗️ Building
+```bash
+cd frontend
+npm install
+npm run build
+```
 
-### Current Platform
+Verifikasi backend:
+
+```bash
+go test ./...
+go build ./...
+```
+
+Verifikasi kategori Phase 1:
+
+```bash
+go test ./... -run Text
+go test ./... -run Calc
+go test ./... -run Security
+go test ./... -run QR
+go test ./... -run Archive
+```
+
+## Build
+
+Build app untuk platform saat ini:
+
 ```bash
 wails build
-# or
+```
+
+Script build yang tersedia:
+
+```bash
 ./scripts/build.sh
-```
-
-### Cross-Platform Builds
-```bash
-# Build for all platforms
 ./scripts/build-all.sh
-
-# Individual platforms
-./scripts/build-windows.sh      # Windows AMD64
-./scripts/build-linux.sh         # Linux AMD64
-./scripts/build-macos-arm.sh     # macOS Apple Silicon
-./scripts/build-macos-intel.sh   # macOS Intel
-./scripts/build-macos-universal.sh  # macOS Universal Binary
+./scripts/build-linux.sh
+./scripts/build-windows.sh
+./scripts/build-macos-arm.sh
+./scripts/build-macos-intel.sh
+./scripts/build-macos-universal.sh
 ```
 
-Built applications will be in `build/bin/`
+## Project Structure
 
-## 🎨 shadcn/ui Components
-
-This template includes pre-configured shadcn/ui components:
-- Button
-- Input
-- Label
-- Card
-
-Add more components:
-```bash
-npx shadcn@latest add [component-name]
-```
-
-Browse components at [ui.shadcn.com](https://ui.shadcn.com/)
-
-## 📁 Project Structure
-
-```
+```text
 .
-├── app.tmpl.go              # Main application logic
-├── main.tmpl.go             # Entry point
+├── main.go                     # Entry point Wails
+├── roadmap.md                  # Roadmap migrasi dan execution plan
 ├── frontend/
 │   ├── src/
-│   │   ├── App.tsx          # Main React component
-│   │   ├── components/ui/   # shadcn/ui components
-│   │   └── lib/utils.ts     # Utility functions
-│   ├── vite.config.ts       # Vite configuration
-│   └── package.json         # Frontend dependencies
-└── scripts/                 # Build scripts
+│   │   ├── App.tsx             # Frontend shell/orchestration
+│   │   ├── components/ui/      # shadcn-style UI primitives
+│   │   └── features/phase-one/ # Komponen fitur frontend yang sudah dipisah per kategori
+│   ├── wailsjs/                # Generated bindings dari Wails
+│   └── package.json
+├── internal/
+│   ├── app/                    # Bootstrap dan dependency wiring
+│   ├── bindings/               # Wails bindings
+│   ├── contracts/              # Response envelope / DTO
+│   ├── core/
+│   │   ├── archive/
+│   │   ├── calc/
+│   │   ├── qr/
+│   │   ├── security/
+│   │   └── text/
+│   └── infra/
+│       ├── temp/               # Temp manager, size limit, timeout
+│       └── toolregistry/       # Capability manifest / registry
+└── scripts/                    # Build scripts lintas platform
 ```
 
-## 🔧 Configuration
+## Frontend Notes
 
-Project configuration is in `wails.json` (auto-generated on `wails init`). 
+Frontend saat ini:
+- memakai shell desktop bernuansa Spotify
+- sudah modular per kategori
+- menampilkan hasil tool dalam envelope backend mentah
+- mendukung file picker / drag-drop untuk input file-based tertentu
 
-See [Wails documentation](https://wails.io/docs/reference/project-config) for all options.
+Catatan output file:
+- jika `Output path` dikosongkan, backend akan memakai managed temp workspace
+- path hasil aktual akan muncul di field `data` pada panel hasil
 
-## 📚 Learn More
+## Backend Conventions
 
-- [Wails Documentation](https://wails.io/docs/introduction)
-- [React Documentation](https://react.dev/)
-- [Vite Documentation](https://vitejs.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/)
-- [shadcn/ui Documentation](https://ui.shadcn.com/)
+Semua binding mengikuti kontrak yang sama:
 
-## 📝 License
+```json
+{
+  "success": true,
+  "data": "...",
+  "error": null,
+  "trace_id": "..."
+}
+```
 
-This template is available as open source under the terms of the MIT License.
+Untuk flow file-based:
+- input besar akan ditolak oleh size limit
+- operasi dibungkus timeout
+- output path boleh kosong agar backend membuat lokasi sementara yang aman
+
+## Roadmap
+
+Dokumen utama untuk pengembangan:
+- [roadmap.md](/media/irprogrammer/DATA/Project/wails/usefullTools/roadmap.md:1)
+- [frontend/feature.md](/media/irprogrammer/DATA/Project/wails/usefullTools/frontend/feature.md:1)
+
+Roadmap backend saat ini:
+- Phase 0: selesai
+- Phase 1: selesai
+- Next: phase berikutnya sesuai `roadmap.md`
+
+## License
+
+Belum ditetapkan di repo ini.

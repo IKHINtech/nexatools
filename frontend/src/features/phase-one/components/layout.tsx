@@ -42,11 +42,11 @@ export function TopBar({
       <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
         <div className="flex min-w-0 items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1ed760] shadow-[0_10px_30px_-15px_rgba(30,215,96,0.9)]">
-            <img src={logo} alt="Your Everyday Tools" className="h-7 w-7 rounded-full object-cover" />
+            <img src={logo} alt="NexaTools" className="h-7 w-7 rounded-full object-cover" />
           </div>
           <div className="min-w-0">
             <div className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#b3b3b3]">Desktop Toolkit</div>
-            <div className="truncate text-2xl font-black tracking-[-0.03em] text-white">Your Everyday Tools</div>
+            <div className="truncate text-2xl font-black tracking-[-0.03em] text-white">NexaTools</div>
             <div className="text-sm text-[#b3b3b3]">Spotify-inspired shell with unified response envelope and desktop-first flows.</div>
           </div>
         </div>

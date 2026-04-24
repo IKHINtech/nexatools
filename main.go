@@ -4,11 +4,11 @@ import (
 	"embed"
 	"log"
 
-	appbootstrap "changeme/internal/app"
-	"changeme/internal/bindings"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	appbootstrap "nexatools/internal/app"
+	"nexatools/internal/bindings"
 )
 
 //go:embed all:frontend/dist
@@ -22,7 +22,7 @@ func main() {
 	app := bindings.New(bootstrap)
 
 	err = wails.Run(&options.App{
-		Title:  "wails-base-fresh",
+		Title:  "NexaTools",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{

@@ -1,4 +1,4 @@
-module changeme
+module nexatools
 
 go 1.23
 

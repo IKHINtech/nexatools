@@ -7,11 +7,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"changeme/internal/app"
-	"changeme/internal/contracts"
-	"changeme/internal/core/archive"
-	"changeme/internal/core/text"
-	"changeme/internal/infra/toolregistry"
+	"nexatools/internal/app"
+	"nexatools/internal/contracts"
+	"nexatools/internal/core/archive"
+	"nexatools/internal/core/text"
+	"nexatools/internal/infra/toolregistry"
 )
 
 type App struct {

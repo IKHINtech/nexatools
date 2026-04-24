@@ -4,13 +4,13 @@ import (
 	"path/filepath"
 	"time"
 
-	"changeme/internal/core/archive"
-	"changeme/internal/core/calc"
-	"changeme/internal/core/qr"
-	"changeme/internal/core/security"
-	"changeme/internal/core/text"
-	"changeme/internal/infra/temp"
-	"changeme/internal/infra/toolregistry"
+	"nexatools/internal/core/archive"
+	"nexatools/internal/core/calc"
+	"nexatools/internal/core/qr"
+	"nexatools/internal/core/security"
+	"nexatools/internal/core/text"
+	"nexatools/internal/infra/temp"
+	"nexatools/internal/infra/toolregistry"
 )
 
 type Services struct {

@@ -1,7 +1,7 @@
-# Roadmap Migrasi Your Everyday Tools ke Go Murni (AI-Executable)
+# Roadmap Migrasi NexaTools ke Go Murni (AI-Executable)
 
 ## 1) Tujuan
-Migrasi seluruh fitur Your Everyday Tools ke stack Go murni untuk backend logic, dengan aplikasi desktop berbasis Wails sebagai shell UI.
+Migrasi seluruh fitur NexaTools ke stack Go murni untuk backend logic, dengan aplikasi desktop berbasis Wails sebagai shell UI.
 
 ## 2) Prinsip Eksekusi (Wajib untuk Agent AI)
 - Kerjakan per task ID, jangan lompat dependency.

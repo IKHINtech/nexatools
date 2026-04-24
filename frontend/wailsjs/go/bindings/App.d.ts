@@ -6,7 +6,7 @@ export function ArchiveCreateZIP(arg1:string,arg2:Array<string>):Promise<contrac
 
 export function ArchiveExtractZIP(arg1:string,arg2:string):Promise<contracts.ToolResult_string_>;
 
-export function ArchiveZIPInfo(arg1:string):Promise<contracts.ToolResult___changeme_internal_core_archive_ZIPEntry_>;
+export function ArchiveZIPInfo(arg1:string):Promise<contracts.ToolResult___nexatools_internal_core_archive_ZIPEntry_>;
 
 export function CalcAddDays(arg1:string,arg2:number):Promise<contracts.ToolResult_string_>;
 
@@ -26,7 +26,7 @@ export function CalcUnit(arg1:string,arg2:number,arg3:string,arg4:string):Promis
 
 export function Greet(arg1:string):Promise<string>;
 
-export function ListTools():Promise<contracts.ToolResult___changeme_internal_infra_toolregistry_Tool_>;
+export function ListTools():Promise<contracts.ToolResult___nexatools_internal_infra_toolregistry_Tool_>;
 
 export function QRGenerateBarcodeSVG(arg1:string,arg2:string,arg3:string):Promise<contracts.ToolResult_string_>;
 
@@ -62,4 +62,4 @@ export function TextURLDecode(arg1:string):Promise<contracts.ToolResult_string_>
 
 export function TextURLEncode(arg1:string):Promise<contracts.ToolResult_string_>;
 
-export function TextWordCount(arg1:string):Promise<contracts.ToolResult_changeme_internal_core_text_WordStats_>;
+export function TextWordCount(arg1:string):Promise<contracts.ToolResult_nexatools_internal_core_text_WordStats_>;
