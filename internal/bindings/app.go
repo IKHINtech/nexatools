@@ -313,6 +313,26 @@ func (a *App) QRGeneratePNG(content string, size int, outputPath string) contrac
 	return contracts.Ok(resolvedOutput)
 }
 
+func (a *App) QRGenerateBarcodeSVG(format, content, outputPath string) contracts.ToolResult[string] {
+	if err := a.checkInlineSize(content); err != nil {
+		return contracts.Fail[string]("INPUT_TOO_LARGE", err.Error())
+	}
+	resolvedOutput, err := a.ensureWorkspacePath(outputPath, "barcode.svg")
+	if err != nil {
+		return contracts.Fail[string]("BARCODE_GENERATE_FAILED", err.Error())
+	}
+	err = a.runWithTimeout(func() error {
+		return a.bootstrap.Services.QR.GenerateBarcodeSVG(format, content, resolvedOutput)
+	})
+	if err != nil {
+		if errors.Is(err, context.DeadlineExceeded) {
+			return contracts.Fail[string]("PROCESS_TIMEOUT", err.Error())
+		}
+		return contracts.Fail[string]("BARCODE_GENERATE_FAILED", err.Error())
+	}
+	return contracts.Ok(resolvedOutput)
+}
+
 func (a *App) QRReadFromImage(path string) contracts.ToolResult[string] {
 	if err := a.checkFileSize(path); err != nil {
 		if errors.Is(err, os.ErrNotExist) {

@@ -81,29 +81,69 @@ func (s *Service) GeneratePassword(length int, useLower, useUpper, useDigits, us
 	if length <= 0 {
 		length = 16
 	}
-	pool := ""
+	sets := make([]string, 0, 4)
 	if useLower {
-		pool += "abcdefghijklmnopqrstuvwxyz"
+		sets = append(sets, "abcdefghijklmnopqrstuvwxyz")
 	}
 	if useUpper {
-		pool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		sets = append(sets, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 	}
 	if useDigits {
-		pool += "0123456789"
+		sets = append(sets, "0123456789")
 	}
 	if useSymbols {
-		pool += "!@#$%^&*()-_=+[]{}|;:,.<>?/"
+		sets = append(sets, "!@#$%^&*()-_=+[]{}|;:,.<>?/")
 	}
-	if pool == "" {
+	if len(sets) == 0 {
 		return "", fmt.Errorf("character pool is empty")
 	}
+	if length < len(sets) {
+		return "", fmt.Errorf("length must be at least %d", len(sets))
+	}
+
+	pool := ""
+	for _, set := range sets {
+		pool += set
+	}
+
 	b := make([]byte, length)
-	for i := 0; i < length; i++ {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pool))))
+	for i, set := range sets {
+		ch, err := randomChar(set)
 		if err != nil {
 			return "", err
 		}
-		b[i] = pool[n.Int64()]
+		b[i] = ch
+	}
+	for i := len(sets); i < length; i++ {
+		ch, err := randomChar(pool)
+		if err != nil {
+			return "", err
+		}
+		b[i] = ch
+	}
+
+	if err := shuffleBytes(b); err != nil {
+		return "", err
 	}
 	return string(b), nil
+}
+
+func randomChar(pool string) (byte, error) {
+	n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pool))))
+	if err != nil {
+		return 0, err
+	}
+	return pool[n.Int64()], nil
+}
+
+func shuffleBytes(b []byte) error {
+	for i := len(b) - 1; i > 0; i-- {
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(i+1)))
+		if err != nil {
+			return err
+		}
+		j := int(n.Int64())
+		b[i], b[j] = b[j], b[i]
+	}
+	return nil
 }

@@ -57,6 +57,7 @@ func defaultTools() []toolregistry.Tool {
 		{ID: "calc.percentage", Category: "calc", Status: toolregistry.StatusActive},
 		{ID: "calc.unit", Category: "calc", Status: toolregistry.StatusActive},
 		{ID: "qr.generate", Category: "qr", Status: toolregistry.StatusActive},
+		{ID: "qr.generate_barcode", Category: "qr", Status: toolregistry.StatusActive},
 		{ID: "qr.read", Category: "qr", Status: toolregistry.StatusActive},
 		{ID: "security.hash_file", Category: "security", Status: toolregistry.StatusActive},
 		{ID: "security.hash_text", Category: "security", Status: toolregistry.StatusActive},

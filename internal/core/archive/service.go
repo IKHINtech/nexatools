@@ -36,6 +36,7 @@ func addPathToZip(zw *zip.Writer, path string) error {
 	if err != nil {
 		return err
 	}
+	baseDir := filepath.Dir(path)
 	if info.IsDir() {
 		return filepath.Walk(path, func(file string, fi os.FileInfo, walkErr error) error {
 			if walkErr != nil {
@@ -44,13 +45,13 @@ func addPathToZip(zw *zip.Writer, path string) error {
 			if fi.IsDir() {
 				return nil
 			}
-			return addFile(zw, file)
+			return addFile(zw, file, baseDir)
 		})
 	}
-	return addFile(zw, path)
+	return addFile(zw, path, baseDir)
 }
 
-func addFile(zw *zip.Writer, path string) error {
+func addFile(zw *zip.Writer, path string, baseDir string) error {
 	f, err := os.Open(path)
 	if err != nil {
 		return err
@@ -66,7 +67,11 @@ func addFile(zw *zip.Writer, path string) error {
 		return err
 	}
 	h.Method = zip.Deflate
-	h.Name = filepath.Base(path)
+	relPath, err := filepath.Rel(baseDir, path)
+	if err != nil {
+		return err
+	}
+	h.Name = filepath.ToSlash(relPath)
 	w, err := zw.CreateHeader(h)
 	if err != nil {
 		return err
