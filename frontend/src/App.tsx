@@ -33,10 +33,9 @@ import {
   TextWordCount,
 } from "../wailsjs/go/bindings/App";
 import "@/index.css";
-import { SectionHeader } from "@/features/phase-one/components/common";
 import { ArchiveToolsSection } from "@/features/phase-one/components/archive-tools";
 import { CalcToolsSection } from "@/features/phase-one/components/calc-tools";
-import { HeaderPanel, ResultPanel, Sidebar } from "@/features/phase-one/components/layout";
+import { CategoryHero, ResultPanel, Sidebar, TopBar } from "@/features/phase-one/components/layout";
 import { QRToolsSection } from "@/features/phase-one/components/qr-tools";
 import { SecurityToolsSection } from "@/features/phase-one/components/security-tools";
 import { TextToolsSection } from "@/features/phase-one/components/text-tools";
@@ -68,7 +67,7 @@ function App() {
   const deferredToolSearch = useDeferredValue(toolSearch);
 
   const [textState, setTextState] = useState<TextState>({
-    jsonInput: '{"name":"your tools","phase":1}',
+    jsonInput: '{"name":"your tools","category":"text-data"}',
     jsonIndent: "  ",
     textInput: "hello world",
     caseMode: "snake",
@@ -107,7 +106,7 @@ function App() {
 
   const [qrState, setQRState] = useState<QRState>({
     qrState: {
-      content: "https://example.com/toolkit",
+      content: "https://nexatools.com",
       size: "256",
       outputPath: "",
       inputPath: "",
@@ -222,25 +221,29 @@ function App() {
   const currentLabel = navItems.find((item) => item.id === activeGroup)?.label ?? "";
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(254,215,170,0.35),_transparent_26%),radial-gradient(circle_at_top_right,_rgba(45,212,191,0.18),_transparent_24%),linear-gradient(180deg,_#f8f3e9_0%,_#f1ebde_100%)] text-slate-900">
-      <div className="mx-auto flex min-h-screen max-w-[1500px] flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <HeaderPanel activeTools={tools.filter((tool) => tool.status === "active").length} />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(30,215,96,0.14),_transparent_18%),linear-gradient(180deg,_#101010_0%,_#121212_100%)] text-white">
+      <div className="mx-auto flex min-h-screen max-w-[1500px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
+        <TopBar
+          toolSearch={toolSearch}
+          setToolSearch={setToolSearch}
+          filteredTools={filteredTools}
+          activeTools={tools.filter((tool) => tool.status === "active").length}
+        />
 
         <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)_360px]">
           <Sidebar
             activeGroup={activeGroup}
             setActiveGroup={setActiveGroup}
-            toolSearch={toolSearch}
-            setToolSearch={setToolSearch}
-            tools={tools}
-            filteredTools={filteredTools}
             countsByGroup={countsByGroup}
           />
 
           <main className="space-y-4">
-            <SectionHeader
+            <CategoryHero
+              activeGroup={activeGroup}
+              setActiveGroup={setActiveGroup}
+              countsByGroup={countsByGroup}
               title={currentLabel}
-              description={`${currentCount.active} active tools exposed in this category. All actions return the unified backend envelope.`}
+              loadingLabel={loadingLabel}
             />
 
             {activeGroup === "text" ? (

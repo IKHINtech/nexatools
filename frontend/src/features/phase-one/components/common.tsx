@@ -64,10 +64,10 @@ export function ToolCard({
   children: ReactNode;
 }) {
   return (
-    <Card className="border-stone-300/80 bg-white/80 shadow-[0_20px_60px_-50px_rgba(68,64,60,0.8)] backdrop-blur">
+    <Card className="border-white/8 bg-[#181818] text-white shadow-[0_20px_60px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
       <CardHeader>
-        <CardTitle className="text-2xl font-black tracking-[-0.03em] text-stone-900">{title}</CardTitle>
-        <CardDescription className="text-stone-600">{description}</CardDescription>
+        <CardTitle className="text-2xl font-black tracking-[-0.03em] text-white">{title}</CardTitle>
+        <CardDescription className="text-[#b3b3b3]">{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">{children}</CardContent>
     </Card>
@@ -83,7 +83,7 @@ export function Field({
 }) {
   return (
     <div className="grid gap-2">
-      <Label className="text-sm font-semibold text-stone-700">{label}</Label>
+      <Label className="text-sm font-semibold text-[#f5f5f5]">{label}</Label>
       {children}
     </div>
   );
@@ -99,7 +99,7 @@ export function Toggle({
   label: string;
 }) {
   return (
-    <label className="flex cursor-pointer items-center justify-between rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-white">
+    <label className="flex cursor-pointer items-center justify-between rounded-2xl border border-white/8 bg-[#242424] px-4 py-3 text-sm text-[#f5f5f5] transition hover:border-white/14 hover:bg-[#2a2a2a]">
       <span>{label}</span>
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-stone-900" />
     </label>
@@ -108,9 +108,9 @@ export function Toggle({
 
 export function RulePill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3">
-      <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-stone-500">{label}</div>
-      <div className="mt-1 text-sm font-medium text-stone-800">{value}</div>
+    <div className="rounded-2xl border border-white/8 bg-[#242424] px-4 py-3">
+      <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#b3b3b3]">{label}</div>
+      <div className="mt-1 text-sm font-medium text-white">{value}</div>
     </div>
   );
 }
@@ -118,7 +118,7 @@ export function RulePill({ label, value }: { label: string; value: string }) {
 export function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="text-[11px] uppercase tracking-[0.18em] text-stone-500">{label}</div>
+      <div className="text-[11px] uppercase tracking-[0.18em] text-[#b3b3b3]">{label}</div>
       <div className="mt-1 break-words text-sm text-stone-100">{value}</div>
     </div>
   );
@@ -132,10 +132,10 @@ export function SectionHeader({
   description: string;
 }) {
   return (
-    <Card className="border-stone-300/80 bg-white/80 backdrop-blur">
+    <Card className="border-white/8 bg-[linear-gradient(180deg,rgba(34,34,34,0.96),rgba(24,24,24,0.96))] backdrop-blur">
       <CardHeader>
-        <CardTitle className="text-xl font-black tracking-[-0.03em] text-stone-900">{title}</CardTitle>
-        <CardDescription className="text-stone-600">{description}</CardDescription>
+        <CardTitle className="text-xl font-black tracking-[-0.03em] text-white">{title}</CardTitle>
+        <CardDescription className="text-[#b3b3b3]">{description}</CardDescription>
       </CardHeader>
     </Card>
   );
@@ -234,13 +234,13 @@ export function PathPicker({
 
   return (
     <div className="grid gap-2">
-      <Label htmlFor={inputId} className="text-sm font-semibold text-stone-700">{label}</Label>
+      <Label htmlFor={inputId} className="text-sm font-semibold text-[#f5f5f5]">{label}</Label>
       <div
         data-drop-key={dropKey}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => void handleDrop(event)}
         style={dropTargetStyle}
-        className="rounded-3xl border border-dashed border-stone-300 bg-stone-50/80 p-3 transition hover:border-stone-500 hover:bg-white"
+        className="rounded-3xl border border-dashed border-white/12 bg-[#121212] p-3 transition hover:border-[#1ed760]/40 hover:bg-[#181818]"
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Input
@@ -248,20 +248,20 @@ export function PathPicker({
             value={value}
             onChange={(event) => onChange(event.target.value)}
             placeholder={placeholder}
-            className="border-stone-300 bg-white"
+            className="border-white/8 bg-[#242424] text-white placeholder:text-[#b3b3b3]"
           />
           <div className="flex gap-2">
-            <Button type="button" variant="outline" onClick={() => hiddenInputRef.current?.click()}>
+            <Button type="button" variant="outline" onClick={() => hiddenInputRef.current?.click()} className="border-white/10 bg-[#242424] text-white hover:bg-[#2a2a2a]">
               {buttonLabel}
             </Button>
             {value ? (
-              <Button type="button" variant="ghost" onClick={() => onChange("")}>
+              <Button type="button" variant="ghost" onClick={() => onChange("")} className="text-[#b3b3b3] hover:bg-[#2a2a2a] hover:text-white">
                 Clear
               </Button>
             ) : null}
           </div>
         </div>
-        <div className="mt-2 text-xs leading-5 text-stone-500">
+        <div className="mt-2 text-xs leading-5 text-[#b3b3b3]">
           {helper ?? "Drop file here or choose from disk. In Wails desktop, picker resolves absolute paths for backend use."}
         </div>
       </div>

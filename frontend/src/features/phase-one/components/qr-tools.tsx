@@ -52,7 +52,7 @@ export function QRToolsSection({ state, setState, loading, runTool, bindings }: 
         </div>
       </ToolCard>
 
-      <ToolCard title="Barcode Generator" description="Phase 1 barcode scope currently exposes SVG outputs for Code39 and EAN13.">
+      <ToolCard title="Barcode Generator" description="Current barcode scope exposes SVG outputs for Code39 and EAN13.">
         <div className="grid gap-4 md:grid-cols-3">
           <Field label="Format">
             <select value={barcodeState.format} onChange={(e) => setState((prev) => ({ ...prev, barcodeState: { ...prev.barcodeState, format: e.target.value } }))} className={selectClass}>
